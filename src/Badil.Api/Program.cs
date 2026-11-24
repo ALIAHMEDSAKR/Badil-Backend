@@ -1,3 +1,4 @@
+using Badil.Api.Middleware;
 using Badil.Application;
 using Badil.Infrastructure;
 
@@ -11,9 +12,12 @@ builder.Services.AddOpenApi();
 // Layer-specific Dependency Injection extensions 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 
 var app = builder.Build();
+app.UseExceptionHandler();
 
 
 if (app.Environment.IsDevelopment())
@@ -22,7 +26,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
