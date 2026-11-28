@@ -431,3 +431,6 @@ FodyWeavers.xsd
 .agent/
 AGENTS.md
 docs/
+
+# VS2AI Exporter
+.vs2ai/

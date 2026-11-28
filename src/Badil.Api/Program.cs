@@ -1,19 +1,6 @@
-using Badil.Api.Middleware;
-using Badil.Application;
-using Badil.Infrastructure;
-
-
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddOpenApi();
-
-// Layer-specific Dependency Injection extensions 
-builder.Services.AddApplication();
-builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddProblemDetails();
-builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+Badil.Api.Extensions.ApiConfigurationExtensions.AddBadilApiConfiguration(builder);
 
 
 var app = builder.Build();
